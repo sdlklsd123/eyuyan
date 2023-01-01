@@ -1,21 +1,91 @@
-按键精灵电脑版全能宝典 文章目录
+Deep Extend
+===========
 
-简介
-如何学习脚本制作
-特色 简介 为了帮助大家快速掌握按键精灵电脑版脚本制作，紫猫编程学院精心编写了本宝典供大家查阅。
-如果你是需要查看按键精灵手机版全能宝典，请访问：https://m.zimaoxy.com/
+Recursive object extending.
 
-如何学习脚本制作 可以报名紫猫编程学院，从零开始系统化学习，避免走弯路，详见 紫猫编程学院简介 。
+[![Build Status](https://api.travis-ci.org/unclechu/node-deep-extend.svg?branch=master)](https://travis-ci.org/unclechu/node-deep-extend)
 
-也可以通过我们的公开课视频教程配合宝典学习掌握按键精灵各个知识点。
+[![NPM](https://nodei.co/npm/deep-extend.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/deep-extend/)
 
-特色 灵活使用右上角的 搜索 功能，可以快速找到你需要的知识。
+Install
+-------
 
-包含紫猫老师精心编写的按键精灵所有命令详细解释与实例，可在左边的列表中查看。
+```bash
+$ npm install deep-extend
+```
 
-还包含一些精品视频教程，例如 《第一届零基础学按键精灵》
+Usage
+-----
 
-搜索命令技巧
+```javascript
+var deepExtend = require('deep-extend');
+var obj1 = {
+  a: 1,
+  b: 2,
+  d: {
+    a: 1,
+    b: [],
+    c: { test1: 123, test2: 321 }
+  },
+  f: 5,
+  g: 123,
+  i: 321,
+  j: [1, 2]
+};
+var obj2 = {
+  b: 3,
+  c: 5,
+  d: {
+    b: { first: 'one', second: 'two' },
+    c: { test2: 222 }
+  },
+  e: { one: 1, two: 2 },
+  f: [],
+  g: (void 0),
+  h: /abc/g,
+  i: null,
+  j: [3, 4]
+};
 
-右上角有 搜索 功能，通过搜索可以快速找到你需要的知识。
-2222222222
+deepExtend(obj1, obj2);
+
+console.log(obj1);
+/*
+{ a: 1,
+  b: 3,
+  d:
+   { a: 1,
+     b: { first: 'one', second: 'two' },
+     c: { test1: 123, test2: 222 } },
+  f: [],
+  g: undefined,
+  c: 5,
+  e: { one: 1, two: 2 },
+  h: /abc/g,
+  i: null,
+  j: [3, 4] }
+*/
+```
+
+Unit testing
+------------
+
+```bash
+$ npm test
+```
+
+Changelog
+---------
+
+[CHANGELOG.md](./CHANGELOG.md)
+
+Any issues?
+-----------
+
+Please, report about issues
+[here](https://github.com/unclechu/node-deep-extend/issues).
+
+License
+-------
+
+[MIT](./LICENSE)
